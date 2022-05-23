@@ -1,3 +1,97 @@
+/*Initial styling*/
+
+html {
+  scroll-behavior: smooth;
+}
+*,
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+}
+
+.shortener-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 5vh 10vw;
+  gap: 5rem;
+}
+
+.header a {
+  color: #5b5987;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #67b6f7;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3vh 0;
+}
+
+.description img {
+  width: 12rem;
+  height: 10rem;
+}
+
+.description p {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: #5b5987;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.search input {
+  width: 50rem;
+  padding: 1.2rem;
+  border-radius: 3rem;
+  border: 0.15rem solid #67b6f7;
+  margin-left: -4.5rem;
+  font-size: 1.5rem;
+  padding-left: 6rem;
+}
+
+.search-icon {
+  z-index: 100;
+  color: #67b6f7;
+  font-size: 3rem;
+}
+.search-btn {
+  margin-top: 2rem;
+}
+
+.search-btn button {
+  background-color: #67b6f7;
+  color: #5b5987;
+  padding: 0.5rem;
+  border: 0.5rem solid #67b6f7;
+  font-size: 1.5rem;
+  border-radius: 0.2rem;
 }
