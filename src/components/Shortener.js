@@ -1,10 +1,59 @@
 //Required imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UrlImg from "../assets/url.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import { Header } from "./Header";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Shortener = () => {
+  const ACCESS_TOKEN = "a5ae807340e8077c778fbf7ae9d6a1376dadb9dc";
+
+  //Controlled  componen
+  const [url, setUrl] = useState("");
+  const [clickedUrl, setClickedUrl] = useState();
+  const [shortenedLink, setShortnedLink] = useState("");
+  const [resultStyle, setResultStyle] = useState({ display: "none" });
+
+  const handleChange = (e) => {
+    setUrl(e.target.value);
+  };
+
+  const handleClick = () => {
+    setClickedUrl(url);
+  };
+
+  const notify = () => toast.success("Copied!");
+
+  const handlecopy = () => {
+    navigator.clipboard.writeText(shortenedLink);
+    notify();
+  };
+
+  useEffect(() => {
+    const Shorten = async () => {
+      const res = await fetch("https://api-ssl.bitly.com/v4/shorten", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          long_url: clickedUrl,
+          domain: "bit.ly",
+        }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      data.link
+        ? setShortnedLink(data.link) || setResultStyle({ display: "flex" })
+        : setShortnedLink("Error: Please try again");
+    };
+    Shorten();
+  }, [clickedUrl]);
+
   return (
     <div className="shortener">
       <Header />
@@ -19,10 +68,18 @@ export const Shortener = () => {
 
         <div className="search">
           <HiOutlineSearch className="search-icon" />
-          <input type="text" />
+          <input type="text" value={url} onChange={handleChange} />
         </div>
         <div className="search-btn">
-          <button>Shorten Url</button>
+          <button type="button" onClick={handleClick}>
+            Shorten Url
+          </button>
+        </div>
+
+        <div className="shortened" style={resultStyle}>
+          <p>{shortenedLink}</p>
+          <button onClick={handlecopy}>Copy</button>
+          <ToastContainer position="top-left" />
         </div>
       </div>
     </div>

@@ -94,4 +94,29 @@ body {
   border: 0.5rem solid #67b6f7;
   font-size: 1.5rem;
   border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.shortened {
+  margin: 3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.shortened p {
+  font-size: 1.5rem;
+  color: #5b5987;
+  background: whitesmoke;
+  padding: 0.7rem;
+  border-radius: 0.2rem;
+}
+
+.shortened button {
+  margin-left: 3rem;
+  font-size: 1.5rem;
+  border: 0.1rem solid #5b5987;
+  padding: 0.7rem;
+  width: 10rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
 }
