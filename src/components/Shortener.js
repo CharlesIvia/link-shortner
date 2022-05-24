@@ -8,8 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 export const Shortener = () => {
   const ACCESS_TOKEN = "a5ae807340e8077c778fbf7ae9d6a1376dadb9dc";
-
-  //Controlled  componen
   const [url, setUrl] = useState("");
   const [clickedUrl, setClickedUrl] = useState();
   const [shortenedLink, setShortnedLink] = useState("");
@@ -45,8 +43,6 @@ export const Shortener = () => {
       });
 
       const data = await res.json();
-      console.log(data);
-
       data.link
         ? setShortnedLink(data.link) || setResultStyle({ display: "flex" })
         : setShortnedLink("Error: Please try again");
