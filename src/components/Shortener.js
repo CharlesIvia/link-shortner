@@ -5,11 +5,12 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { Header } from "./Header";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { History } from "./History";
 
 export const Shortener = () => {
   const ACCESS_TOKEN = "a5ae807340e8077c778fbf7ae9d6a1376dadb9dc";
   const [url, setUrl] = useState("");
-  const [clickedUrl, setClickedUrl] = useState();
+  const [clickedUrl, setClickedUrl] = useState("");
   const [shortenedLink, setShortnedLink] = useState("");
   const [resultStyle, setResultStyle] = useState({ display: "none" });
 
@@ -43,11 +44,12 @@ export const Shortener = () => {
       });
 
       const data = await res.json();
+
       data.link
         ? setShortnedLink(data.link) || setResultStyle({ display: "flex" })
         : setShortnedLink("Error: Please try again");
     };
-    Shorten();
+    clickedUrl && Shorten();
   }, [clickedUrl]);
 
   return (
@@ -64,7 +66,12 @@ export const Shortener = () => {
 
         <div className="search">
           <HiOutlineSearch className="search-icon" />
-          <input type="text" value={url} onChange={handleChange} />
+          <input
+            type="text"
+            value={url}
+            onChange={handleChange}
+            autoFocus={true}
+          />
         </div>
         <div className="search-btn">
           <button type="button" onClick={handleClick}>
